@@ -1,4 +1,4 @@
-import { MapPin, X } from 'lucide-react';
+import { MapPin, X, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 
 export default function Destinations() {
@@ -7,6 +7,7 @@ export default function Destinations() {
     {
       name: "Baghdad",
       description: "The historic capital blending ancient heritage with modern life. Explore the National Museum and vibrant markets.",
+      image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac560?w=500&q=80",
       highlights: [
         {
           name: "National Museum",
@@ -25,6 +26,7 @@ export default function Destinations() {
     {
       name: "Babylon",
       description: "Walk through the legendary ancient city, home to the Hanging Gardens and Ishtar Gate.",
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80",
       highlights: [
         {
           name: "Ishtar Gate",
@@ -43,6 +45,7 @@ export default function Destinations() {
     {
       name: "Erbil",
       description: "One of the oldest continuously inhabited cities in the world with a magnificent citadel.",
+      image: "https://images.unsplash.com/photo-1478862400919-41a05654fb11?w=500&q=80",
       highlights: [
         {
           name: "Erbil Citadel",
@@ -61,6 +64,7 @@ export default function Destinations() {
     {
       name: "Ur",
       description: "Birthplace of Abraham and site of the ancient Ziggurat, dating back to 2100 BCE.",
+      image: "https://images.unsplash.com/photo-1464207687429-7505649dae38?w=500&q=80",
       highlights: [
         {
           name: "Great Ziggurat",
@@ -79,6 +83,7 @@ export default function Destinations() {
     {
       name: "Najaf & Karbala",
       description: "Sacred cities with stunning Islamic architecture and deep spiritual significance.",
+      image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&q=80",
       highlights: [
         {
           name: "Imam Ali Shrine",
@@ -97,6 +102,7 @@ export default function Destinations() {
     {
       name: "Marshlands",
       description: "The Mesopotamian Marshes, a UNESCO site where ancient water culture still thrives.",
+      image: "https://images.unsplash.com/photo-1511516017401-cac6e4b3d463?w=500&q=80",
       highlights: [
         {
           name: "Traditional Villages",
@@ -115,14 +121,20 @@ export default function Destinations() {
   ];
 
   return (
-    <section className="py-20 px-4 bg-white">
+    <section id="destinations" className="py-24 px-4 bg-gradient-warm">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-20">
+          <div className="inline-block mb-4">
+            <div className="flex items-center gap-2 text-teal-600 font-semibold">
+              <MapPin className="w-5 h-5" />
+              <span>Discover Iraq</span>
+            </div>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
             Must-Visit Destinations
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            From ancient ruins to sacred cities, Iraq offers unforgettable experiences
+          <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            From ancient Mesopotamian ruins to sacred pilgrimage sites, explore destinations that shaped human civilization
           </p>
         </div>
 
@@ -130,38 +142,53 @@ export default function Destinations() {
           {destinations.map((destination, index) => (
             <div
               key={index}
-              className="group bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1"
+              className="group h-full bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer"
             >
-              <div className="p-8">
-                <div className="flex items-center gap-2 mb-4">
-                  <MapPin className="w-6 h-6 text-orange-600" />
-                  <h3 className="text-2xl font-bold text-gray-900">
+              <div className="relative h-48 md:h-56 overflow-hidden bg-gray-200">
+                <img 
+                  src={destination.image} 
+                  alt={destination.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white flex items-center gap-2">
+                    <MapPin className="w-6 h-6 text-teal-400" />
                     {destination.name}
                   </h3>
                 </div>
+              </div>
 
-                <p className="text-gray-700 mb-6 leading-relaxed">
+              <div className="p-6 md:p-8 flex flex-col h-full">
+                <p className="text-gray-700 mb-6 leading-relaxed text-sm md:text-base flex-grow">
                   {destination.description}
                 </p>
 
-                <div className="space-y-2">
-                  <p className="text-sm font-semibold text-gray-900">Highlights:</p>
-                  {destination.highlights.map((highlight, idx) => (
-                    <div key={idx} className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 bg-orange-600 rounded-full"></div>
-                      {typeof highlight === 'string' ? (
-                        <span className="text-sm text-gray-600">{highlight}</span>
-                      ) : (
-                        <button
-                          onClick={() => setSelectedHighlight(highlight)}
-                          className="text-sm text-orange-600 hover:text-orange-800 hover:underline cursor-pointer font-medium"
-                        >
-                          {highlight.name}
-                        </button>
-                      )}
-                    </div>
-                  ))}
+                <div className="space-y-3 mb-6">
+                  <p className="text-xs md:text-sm font-semibold text-gray-900 uppercase tracking-wider">Highlights</p>
+                  <div className="space-y-2">
+                    {destination.highlights.slice(0, 3).map((highlight, idx) => (
+                      <div key={idx} className="flex items-start gap-3">
+                        <div className="w-1.5 h-1.5 bg-teal-500 rounded-full mt-1.5 flex-shrink-0"></div>
+                        {typeof highlight === 'string' ? (
+                          <span className="text-xs md:text-sm text-gray-600">{highlight}</span>
+                        ) : (
+                          <button
+                            onClick={() => setSelectedHighlight(highlight)}
+                            className="text-xs md:text-sm text-teal-600 hover:text-teal-700 hover:underline font-medium transition-colors"
+                          >
+                            {highlight.name}
+                          </button>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
+
+                <button className="flex items-center justify-between w-full px-4 py-3 bg-teal-50 hover:bg-teal-100 text-teal-700 rounded-lg font-semibold transition-all group">
+                  Explore
+                  <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
               </div>
             </div>
           ))}
@@ -169,19 +196,22 @@ export default function Destinations() {
       </div>
 
       {selectedHighlight && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex justify-between items-center">
-              <h2 className="text-3xl font-bold text-gray-900">{selectedHighlight.name}</h2>
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in duration-300">
+          <div className="bg-white rounded-3xl shadow-2xl max-w-3xl w-full max-h-[85vh] overflow-y-auto">
+            <div className="sticky top-0 bg-gradient-to-r from-teal-50 to-sand-50 border-b border-teal-100 p-6 md:p-8 flex justify-between items-start gap-4">
+              <div>
+                <h2 className="text-2xl md:text-4xl font-bold text-gray-900">{selectedHighlight.name}</h2>
+                <div className="h-1 w-16 bg-gradient-to-r from-teal-500 to-teal-300 rounded-full mt-3"></div>
+              </div>
               <button
                 onClick={() => setSelectedHighlight(null)}
-                className="p-2 hover:bg-gray-100 rounded-lg transition"
+                className="p-2 hover:bg-teal-100 rounded-lg transition flex-shrink-0"
               >
                 <X className="w-6 h-6 text-gray-600" />
               </button>
             </div>
-            <div className="p-6">
-              <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+            <div className="p-6 md:p-8">
+              <p className="text-gray-700 text-base md:text-lg leading-relaxed whitespace-pre-wrap">
                 {selectedHighlight.details}
               </p>
             </div>

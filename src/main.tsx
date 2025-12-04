@@ -8,3 +8,11 @@ createRoot(document.getElementById('root')!).render(
     <App />
   </StrictMode>
 );
+import Flights from "./pages/Flights";
+
+<Router>
+  <Routes>
+    <Route path="/" element={<App />} />
+    <Route path="/flights" element={<Flights />} />
+  </Routes>
+</Router>

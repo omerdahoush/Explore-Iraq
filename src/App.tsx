@@ -1,36 +1,26 @@
-import Navigation from './components/Navigation';
-import Hero from './components/Hero';
-import About from './components/About';
-import Destinations from './components/Destinations';
-import Gallery from './components/Gallery';
-import Culture from './components/Culture';
-import PracticalInfo from './components/PracticalInfo';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout';
+import Flights from './pages/Flights';
+import Home from './pages/Home';
+import FlightDetails from './pages/FlightDetails';
+import Review from './pages/Review';
+import Booking from './pages/Booking';
 
 function App() {
   return (
-    <div className="min-h-screen bg-white">
-      <Navigation />
-      <div id="home">
-        <Hero />
-      </div>
-      <div id="about">
-        <About />
-      </div>
-      <div id="destinations">
-        <Destinations />
-      </div>
-      <Gallery />
-      <div id="culture">
-        <Culture />
-      </div>
-      <div id="travel">
-        <PracticalInfo />
-      </div>
-      <Contact />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="flights" element={<Flights />} />
+          <Route path="flight-details" element={<FlightDetails />} />
+          <Route path="review" element={<Review />} />
+          <Route path="booking" element={<Booking />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
